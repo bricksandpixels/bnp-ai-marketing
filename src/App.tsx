@@ -1,34 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { Route, Routes } from 'react-router-dom'
+import ServicePage from './components/ServicePage'
+import LoadingScreen from './components/LoadingScreen'
+import { Suspense } from 'react'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className={`flex h-full w-full justify-center items-center bg-linear-to-b from-0% via-55% to-100% from-g1 to-g2 no-select`}>
+      <div className="absolute h-full w-full bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-size-[1.5rem_1.5rem] opacity-3"></div>
+      <div
+        className='w-screen h-dvh z-10 overflow-y-auto overflow-x-hidden bg-dark/50'>
+        <Suspense fallback={<div className='w-screen h-screen'><LoadingScreen isLoading={true} /></div>}>
+          <Routes>
+            <Route path={"/:service"} element={<ServicePage />} />
+          </Routes>
+        </Suspense>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
