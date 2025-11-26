@@ -1,5 +1,5 @@
 import './App.css'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import ServicePage from './components/ServicePage'
 import LoadingScreen from './components/LoadingScreen'
 import { Suspense } from 'react'
@@ -13,6 +13,7 @@ function App() {
         className='w-screen h-dvh z-10 overflow-y-auto overflow-x-hidden bg-dark/50'>
         <Suspense fallback={<div className='w-screen h-screen'><LoadingScreen isLoading={true} /></div>}>
           <Routes>
+            <Route path={"/"} element={<Navigate to="/elevation-to-render" />} />
             <Route path={"/:service"} element={<ServicePage />} />
           </Routes>
         </Suspense>
